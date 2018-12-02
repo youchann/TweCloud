@@ -1,0 +1,31 @@
+/* ここからログイン・サインアップ画面 */
+
+.login-popup-heading>h4 {
+    color: #303030;
+    font-size: 30px;
+    line-height: 30px;
+    margin-bottom: 30px;
+  }
+  .new_reg_popup, .new_login_popup {
+    border-radius: 2px;
+    min-height: 332px;
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 0px 20px;
+  }
+  .login-popup-btn {
+    background: #303030;
+    border: none;
+    border-radius: 25px;
+    color: #fff;
+    display: block;
+    font-size: 18px;
+    height: 38px;
+    line-height: 28px;
+    margin: 20px auto 5px;
+    width: 150px;
+    -webkit-transition: all 700ms ease;
+    -moz-transition: all 700ms ease;
+    -ms-transition: all 700ms ease;
+    -o-transition: all 700ms ease;
+  }
