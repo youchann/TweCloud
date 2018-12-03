@@ -2,7 +2,7 @@ from flask import request, redirect, url_for, render_template, flash, abort, \
         jsonify, session, g
 import requests, json
 from requests_oauthlib import OAuth1Session
-from getTweets import get_tweets
+from application.getTweets import get_tweets
 from application import app
 import application.config as config
 
