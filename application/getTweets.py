@@ -54,3 +54,4 @@ def get_tweets(screen_name):
     # ループ終了後
     print('取得ツイート数', len(tweet_list))
     return tweet_list
+    
