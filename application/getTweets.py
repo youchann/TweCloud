@@ -27,25 +27,36 @@ def get_tweets(screen_name):
         timeline = json.loads(req.text)
         max_id = timeline[-1]['id'] # 最後のツイートIDを取得
 
+        # jsonデータからツイートを取得
+        for tweet in timeline:
+            tweet_list.append(tweet['text'])
+        tweet_list.pop(-1) # 最後の要素を削除(次のループで追加されるため)
+
         while True: # max_idが一番古いIDになるまで繰り返す
             print('%d番目のリクエスト' % loop_count, max_id)
+            new_tweet_list = []
 
-            params['max_id'] = max_id
+            params['max_id'] = max_id # paramsの更新
             req = twitter.get(url, params=params)
 
-            append_timeline = json.loads(req.text)
-            new_max_id = append_timeline[-1]['id']
+            timeline = json.loads(req.text)
+            new_max_id = timeline[-1]['id']
+
+            # jsonデータからツイートを取得
+            for tweet in timeline:
+                new_tweet_list.append(tweet['text'])
 
             if max_id != new_max_id:
-                timeline = timeline + append_timeline
+                new_tweet_list.pop(-1) # 最後の要素を削除(次のループで追加されるため)
+                tweet_list.extend(new_tweet_list)
                 max_id = new_max_id
                 loop_count += 1
             else:
+                tweet_list.extend(new_tweet_list)
                 break
 
-        print('取得ツイート数', len(timeline))
-        for tweet in timeline:
-            tweet_list.append(tweet['text'])
+        # ループ終了後
+        print('取得ツイート数', len(tweet_list))
         return tweet_list
     else:
         print("ERROR: %d" % req.status_code)
