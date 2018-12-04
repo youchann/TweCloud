@@ -60,3 +60,5 @@ def get_tweets(screen_name):
         return tweet_list
     else:
         print("ERROR: %d" % req.status_code)
+
+        
