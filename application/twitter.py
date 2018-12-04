@@ -9,6 +9,7 @@ ATS = config.ACCESS_TOKEN_SECRET
 twitter = OAuth1Session(CK, CS, AT, ATS)
 url = "https://api.twitter.com/1.1/statuses/user_timeline.json"
 
+# ツイートを取得
 def get_tweets(screen_name):
     loop_count = 0
     max_id = None
@@ -21,7 +22,6 @@ def get_tweets(screen_name):
         'include_rts': False
     }
 
-    # ツイートを取得
     while True: # max_idが一番古いIDになるまで繰り返す
         print('%d番目のリクエスト' % loop_count, max_id)
         new_tweet_list = []
@@ -54,4 +54,12 @@ def get_tweets(screen_name):
     # ループ終了後
     print('取得ツイート数', len(tweet_list))
     return tweet_list
-    
+
+
+# 文字列を結合
+def conbine_tweets(tweet_list):
+    conbined_char = ""
+
+    conbined_char = ''.join(tweet_list)
+
+    return conbined_char
