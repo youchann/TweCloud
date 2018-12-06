@@ -1,4 +1,4 @@
-
+from janome.tokenizer import Tokenizer
 
 # URLを除外
 def exclude_url(char):
@@ -16,9 +16,21 @@ def exclude_url(char):
 
     return char
 
-# 改行を除外
+# 改行・スペースを除外
 def exclude_br_and_space(char):
     char = char.replace('\n','')
     char = char.replace(' ', '')
     print('改行の削除完了')
     return exclude_url(char)
+
+
+
+def janome_analysis(text):
+    output = []
+    t = Tokenizer()
+    tokens = t.tokenize(text)
+    for token in tokens:
+        part_of_speech = token.part_of_speech.split(',')[0]
+        if part_of_speech in [u'形容詞', u'動詞',u'名詞', u'副詞']:
+            output.append(token.surface)
+    return output

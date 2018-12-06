@@ -59,7 +59,5 @@ def get_tweets(screen_name):
 # 文字列を結合
 def conbine_tweets(tweet_list):
     conbined_char = ""
-
     conbined_char = ''.join(tweet_list)
-
     return conbined_char
