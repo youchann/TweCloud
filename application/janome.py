@@ -14,6 +14,17 @@ def exclude_url(char):
         else:
             break
 
+    while True:
+        location_URL = char.find('http://')
+        if location_URL != -1:
+            url = char[location_URL:location_URL+22]
+            char = char.replace(url, '')
+            count += 1
+            print(url)
+            print('%d番目のurl削除' % count)
+        else:
+            break
+
     return char
 
 # 改行・スペースを除外
@@ -31,6 +42,6 @@ def janome_analysis(text):
     tokens = t.tokenize(text)
     for token in tokens:
         part_of_speech = token.part_of_speech.split(',')[0]
-        if part_of_speech in [u'形容詞', u'動詞',u'名詞', u'副詞']:
+        if part_of_speech in [u'名詞']:
             output.append(token.surface)
     return output

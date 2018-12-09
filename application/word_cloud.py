@@ -1,5 +1,6 @@
 # coding:utf-8
 # %matplotlib inline
+import uuid
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 
@@ -20,5 +21,13 @@ def create_wordcloud(text):
     plt.figure(figsize=(15,12))
     plt.imshow(wordcloud)
     plt.axis("off")
-    plt.savefig('image.jpg')
+
+    file_name = create_file_name() # ランダムなファイル名を生成
+
+    plt.savefig('application/static/images/' + file_name + '.jpg')
     #plt.show()
+
+    return file_name
+
+def create_file_name():
+    return str(uuid.uuid1())

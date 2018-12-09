@@ -1,15 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
-  
-<div class="login-popup-wrap new_login_popup"> 
-  <div class="login-popup-heading text-center">
-      <h4><i class="fa fa-lock" aria-hidden="true"></i> 分析しよう! </h4>                        
-  </div>
-  <form role="form" action="{{ url_for('analyze_tweets') }}" method=post>
-      <div class="form-group">
-          <input type=text class="form-control" placeholder="TwitterIDを入力" name=id>
-      </div>
-      <button type=submit class="btn btn-default login-popup-btn" name=submit value=analyze>分析する</button>
-  </form>
-</div>
+
+<p><a href="{{ url }}">分析</a></p>
+
+
 {% endblock %}
