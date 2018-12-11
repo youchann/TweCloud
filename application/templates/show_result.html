@@ -4,4 +4,10 @@
 
 {{ image_markup }}
 
+<p>シェアしよう</p>
+<form action="{{ url_for('share_cloud') }}" method="POST">
+    <textarea name="text" cols="25" rows="4">テスト。</textarea> 
+    <p><input type="submit" value="シェアする"/></p>
+</form>
+
 {% endblock %}

@@ -17,7 +17,10 @@ def show_top_page():
 
 @app.route('/analyze')
 def analyze_tweet():
+	# 際アクセスしても利用できるように
     session.pop('file_name', None)
+    session.pop('oauth_token', None)
+    session.pop('oauth_token_secret', None)
 
 	# callbackURLに付与されるパラメータ
     oauth_token = request.args.get('oauth_token')
@@ -29,16 +32,29 @@ def analyze_tweet():
     conbined_char = twitter.conbine_tweets(tweet_list)
     arranged_char = janome.exclude_br_and_space(conbined_char)
     analyzed_data = janome.janome_analysis(arranged_char)
-	
+
     print(analyzed_data)
-    session['file_name'] = create_wordcloud(' '.join(analyzed_data))
-    return redirect(url_for('show_result')) # パラメータを消すためにリダイレクト
+    session['file_name'] = create_wordcloud(' '.join(analyzed_data)) + '.jpg'
+    session['oauth_token'] = access_token['oauth_token']
+    session['oauth_token_secret'] = access_token['oauth_token_secret']
+    return redirect(url_for('show_result')) # パラメータ表示を消すためにリダイレクト
 
 
 @app.route('/result')
 def show_result():
     file_name = session.get('file_name')
-    session.pop('file_name', None)
 
-    image_markup = Markup('<img src="static/images/' + file_name + '.jpg">')
+    image_markup = Markup('<img src="static/images/' + file_name + '">')
     return render_template('show_result.html', image_markup=image_markup)
+
+@app.route('/share', methods=['POST'])
+def share_cloud():
+	if request.method == 'POST':
+		tweet_text = request.form['text']
+
+	oauth_token = session.get('oauth_token')
+	oauth_token_secret = session.get('oauth_token_secret')
+	file_path = 'application' + url_for('static', filename='images/' + session.get('file_name'))
+
+	twitter.tweet_with_image(oauth_token, oauth_token_secret, tweet_text, file_path)
+	pass
