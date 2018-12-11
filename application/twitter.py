@@ -13,7 +13,9 @@ base_url = 'https://api.twitter.com/'
 request_token_url = base_url + 'oauth/request_token'
 authenticate_url = base_url + 'oauth/authenticate'
 access_token_url = base_url + 'oauth/access_token'
-get_tweet_url = base_url + "1.1/statuses/user_timeline.json"
+get_tweet_url = base_url + '1.1/statuses/user_timeline.json'
+post_tweet_url = base_url + '1.1/statuses/update.json'
+upload_media_url = 'https://upload.twitter.com/1.1/media/upload.json'
 
 # ツイートを取得
 def get_tweets(access_token):
@@ -111,6 +113,41 @@ def get_access_token(oauth_token, oauth_verifier):
 
     return access_token
 
+
+# シェア機能
+def tweet_with_image(oauth_token, oauth_token_secret, tweet_text, file_path):
+
+    twitter = OAuth1Session(
+        consumer_key,
+        consumer_secret,
+        oauth_token,
+        oauth_token_secret,
+    )
+    files = {"media" : open(file_path, 'rb')}
+    req_media = twitter.post(upload_media_url, files = files)
+
+    # レスポンスを確認
+    if req_media.status_code != 200:
+        print ("画像アップデート失敗: %s", req_media.text)
+        exit()
+    
+    # Media ID を取得
+    media_id = json.loads(req_media.text)['media_id']
+    print ("Media ID: %d" % media_id)
+
+    # Media ID を付加してテキストを投稿
+    params = {'status': tweet_text, "media_ids": [media_id]}
+    req_media = twitter.post(post_tweet_url, params = params)
+
+    # 再びレスポンスを確認
+    if req_media.status_code != 200:
+        print ("テキストアップデート失敗: %s", tweet_text)
+        exit()
+
+    print ("OK")
+
+
+    pass
 
 # 文字列を結合
 def conbine_tweets(tweet_list):
