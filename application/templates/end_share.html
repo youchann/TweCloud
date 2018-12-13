@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<p>シェアしました</p>
+
+<p class="open_app" style="cursor: pointer;">ツイッターを起動する</p>
+<p><a href="{{ url_for('show_top_page') }}">トップに戻る</a></p>
+
+<script src="{{ url_for('static', filename='js/open_twitter_app.js') }}"></script>
+
+
+{% endblock %}

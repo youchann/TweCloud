@@ -10,6 +10,10 @@ app.config['SECRET_KEY'] = os.urandom(24)
 
 @app.route('/')
 def show_top_page():
+	# 際アクセスしても利用できるように
+    session.pop('file_name', None)
+    session.pop('oauth_token', None)
+    session.pop('oauth_token_secret', None)
 
     to_auth_page_url = twitter.get_request_token()
 
@@ -17,11 +21,7 @@ def show_top_page():
 
 @app.route('/analyze')
 def analyze_tweet():
-	# 際アクセスしても利用できるように
-    session.pop('file_name', None)
-    session.pop('oauth_token', None)
-    session.pop('oauth_token_secret', None)
-
+	
 	# callbackURLに付与されるパラメータ
     oauth_token = request.args.get('oauth_token')
     oauth_verifier = request.args.get('oauth_verifier')
@@ -34,7 +34,7 @@ def analyze_tweet():
     analyzed_data = janome.janome_analysis(arranged_char)
 
     print(analyzed_data)
-    session['file_name'] = create_wordcloud(' '.join(analyzed_data)) + '.jpg'
+    session['file_name'] = create_wordcloud(' '.join(analyzed_data)) + '.png'
     session['oauth_token'] = access_token['oauth_token']
     session['oauth_token_secret'] = access_token['oauth_token_secret']
     return redirect(url_for('show_result')) # パラメータ表示を消すためにリダイレクト
@@ -47,7 +47,16 @@ def show_result():
     image_markup = Markup('<img src="static/images/' + file_name + '">')
     return render_template('show_result.html', image_markup=image_markup)
 
-@app.route('/share', methods=['POST'])
+
+@app.route('/create_share')
+def create_share_tweet():
+    file_name = session.get('file_name')
+
+    image_markup = Markup('<img src="static/images/' + file_name + '">')
+    return render_template('create_share.html', image_markup=image_markup)
+
+
+@app.route('/end_share', methods=['POST'])
 def share_cloud():
 	if request.method == 'POST':
 		tweet_text = request.form['text']
@@ -57,4 +66,5 @@ def share_cloud():
 	file_path = 'application' + url_for('static', filename='images/' + session.get('file_name'))
 
 	twitter.tweet_with_image(oauth_token, oauth_token_secret, tweet_text, file_path)
-	pass
+
+	return  render_template('end_share.html')

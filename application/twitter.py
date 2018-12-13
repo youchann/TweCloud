@@ -30,7 +30,6 @@ def get_tweets(access_token):
         'exclude_replies': True,
         'include_rts': False
     }
-
     twitter = OAuth1Session(
         consumer_key,
         consumer_secret,
@@ -41,7 +40,6 @@ def get_tweets(access_token):
     while True: # max_idが一番古いIDになるまで繰り返す
         print('%d番目のリクエスト' % loop_count, max_id)
         new_tweet_list = []
-
         params['max_id'] = max_id # paramsの更新
         response = twitter.get(get_tweet_url, params=params)
 
@@ -77,9 +75,7 @@ def get_request_token():
 
     # Twitter Application Management で設定したコールバックURLsのどれか
     oauth_callback = request.args.get('oauth_callback')
-
     twitter = OAuth1Session(consumer_key, consumer_secret)
-
     response = twitter.post(
         request_token_url,
         params={'oauth_callback': oauth_callback}
@@ -103,7 +99,6 @@ def get_access_token(oauth_token, oauth_verifier):
         oauth_token,
         oauth_verifier,
     )
-
     response = twitter.post(
         access_token_url,
         params={'oauth_verifier': oauth_verifier}
@@ -144,10 +139,8 @@ def tweet_with_image(oauth_token, oauth_token_secret, tweet_text, file_path):
         print ("テキストアップデート失敗: %s", tweet_text)
         exit()
 
-    print ("OK")
+    return print ("OK")
 
-
-    pass
 
 # 文字列を結合
 def conbine_tweets(tweet_list):

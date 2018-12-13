@@ -1,7 +1,4 @@
-# coding:utf-8
-# %matplotlib inline
 import uuid
-import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 
 def create_wordcloud(text):
@@ -15,18 +12,12 @@ def create_wordcloud(text):
              u'それ', u'ここ', u'ちゃん', u'くん', u'', u'て',u'に',u'を',u'は',u'の', u'が', u'と', u'た', u'し', u'で', \
              u'ない', u'も', u'な', u'い', u'か', u'ので', u'よう', u'']
 
-    wordcloud = WordCloud(background_color="white",font_path=fpath, width=900, height=500, \
+    wordcloud = WordCloud(background_color="white",font_path=fpath, width=1080, height=607, \
                           stopwords=set(stop_words)).generate(text)
 
-    plt.figure(figsize=(15,12))
-    plt.imshow(wordcloud)
-    plt.axis("off")
-
     file_name = create_file_name() # ランダムなファイル名を生成
-
-    plt.savefig('application/static/images/' + file_name + '.jpg')
-    #plt.show()
-
+    wordcloud.to_file('application/static/images/' + file_name + '.png')
+    
     return file_name
 
 def create_file_name():
