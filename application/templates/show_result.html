@@ -1,11 +1,17 @@
 {% extends "layout.html" %}
 {% block body %}
 
-<p>これがあなたのクモです！</p>
 
-{{ image_markup }}
+<div id="loading">
+    <p>ローディング中です</p>
+    <img src="{{ url_for('static', filename='loading/loading.gif') }}">
+</div>
+
+<div class="result_image"></div>
 
 <p><a href="{{ url_for('create_share_tweet') }}">シェアする</a></p>
+
+<script src="{{ url_for('static', filename='js/ajax_get_result.js') }}"></script>
 
 
 {% endblock %}
