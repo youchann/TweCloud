@@ -62,7 +62,7 @@ def get_tweets(access_token):
                 break
 
         else:
-            print("ERROR: %d" % response.status_code)
+            print("ツイート取得失敗: %d" % response.status_code)
             break
 
     # ループ終了後
@@ -80,6 +80,10 @@ def get_request_token():
         request_token_url,
         params={'oauth_callback': oauth_callback}
     )
+
+    if response.status_code != 200:
+        print ("リクエストトークン取得失敗: %s", response.text)
+        return None
 
     request_token = dict(parse_qsl(response.content.decode("utf-8")))
 
@@ -104,6 +108,10 @@ def get_access_token(oauth_token, oauth_verifier):
         params={'oauth_verifier': oauth_verifier}
     )
 
+    if response.status_code != 200:
+        print ("アクセストークン取得失敗: %s", response.text)
+        exit()
+
     access_token = dict(parse_qsl(response.content.decode("utf-8")))
 
     return access_token
@@ -124,7 +132,7 @@ def tweet_with_image(oauth_token, oauth_token_secret, tweet_text, file_path):
     # レスポンスを確認
     if req_media.status_code != 200:
         print ("画像アップデート失敗: %s", req_media.text)
-        exit()
+        return False
     
     # Media ID を取得
     media_id = json.loads(req_media.text)['media_id']
@@ -137,9 +145,9 @@ def tweet_with_image(oauth_token, oauth_token_secret, tweet_text, file_path):
     # 再びレスポンスを確認
     if req_media.status_code != 200:
         print ("テキストアップデート失敗: %s", tweet_text)
-        exit()
+        return False
 
-    return print ("OK")
+    return True
 
 
 # 文字列を結合

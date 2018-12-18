@@ -8,12 +8,25 @@ $(function() {
         url: "analyze",
         contentType:"application/json",
         data: oauth_data,
-        success:function(data) {
-            var file_name = JSON.parse(data.ResultSet).file_name;
-            $("#loading").remove(); //loading画面の削除
-            $(".result_image").append('<p>これがあなたのクモです！</p>');
-            $(".result_image").append('<img src="static/images/' + file_name + '">');
-        }
+    })
+    .then(
+        // 1つめは通信成功時のコールバック
+        function (data) {
+            if (data !== null){
+                var file_name = JSON.parse(data.ResultSet).file_name;
+                $("#loading").remove(); //loading画面の削除
+                $(".result_image").append('<p>これがあなたのクモです！</p>');
+                $(".result_image").append('<img src="static/images/' + file_name + '">');
+            } else {
+                $("#loading").remove(); //loading画面の削除
+                $(".result_image").append('<p>エラー</p>');                
+                $(".result_image").append('<p><a href="/">トップに戻る</a></p>');                
+            }
+        },
+        // 2つめは通信失敗時のコールバック
+        function () {
+            $(".result_image").append('<p>エラー</p>');                
+            $(".result_image").append('<p><a href="/">トップに戻る</a></p>');  
     });
 });
 
