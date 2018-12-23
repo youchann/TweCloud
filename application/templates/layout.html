@@ -8,9 +8,29 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
+
+  <!-- スマホ表示でもメディアクエリを適用 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <!-- Font Awasome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+
 </head>
 <body>
-  {% block body %}{% endblock %}
+  <div id="header-fixed">
+    <div id="header-bk">
+      <header>
+        <div class="img_center">
+          <a href="/"><img src="{{ url_for('static', filename='images/logo.png') }}"></a>
+        </div>
+      </header>
+    </div>
+  </div>
+
+  <div id="main_contents-bk">
+    <div id="main_contents">
+      {% block body %}{% endblock %}
+    </div>
+  </div>
 </body>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

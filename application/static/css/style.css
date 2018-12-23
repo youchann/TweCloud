@@ -1,31 +1,141 @@
-/* ここからログイン・サインアップ画面 */
+/* 全てに適用するスタイル */
+/* html,bodyタグの設定 */
+html, body{
+  margin: 0;         /* 余白の削除 */
+  padding: 0;        /* 余白の削除 */
+  width:100%;
+  height:100%;
+}
 
-.login-popup-heading>h4 {
-    color: #303030;
-    font-size: 30px;
-    line-height: 30px;
-    margin-bottom: 30px;
-  }
-  .new_reg_popup, .new_login_popup {
-    border-radius: 2px;
-    min-height: 332px;
-    max-width: 500px;
-    margin: 50px auto;
-    padding: 0px 20px;
-  }
-  .login-popup-btn {
-    background: #303030;
-    border: none;
-    border-radius: 25px;
-    color: #fff;
-    display: block;
-    font-size: 18px;
-    height: 38px;
-    line-height: 28px;
-    margin: 20px auto 5px;
-    width: 150px;
-    -webkit-transition: all 700ms ease;
-    -moz-transition: all 700ms ease;
-    -ms-transition: all 700ms ease;
-    -o-transition: all 700ms ease;
-  }
+.img_center {
+  text-align: center;
+}
+
+/* ヘッダーの固定 */
+#header-fixed {
+  position: fixed;            /* ヘッダーの固定 */
+  top: 0px;                   /* 位置(上0px) */
+  left: 0px;                  /* 位置(右0px) */
+  width: 100%;                /* 横幅100%　*/
+  height: 55px;              /* 縦幅140px */
+}
+
+#header-bk { 
+  height:55px;              /* 縦の高さ110px */
+  width:100%;                /* 横の幅を100% */
+  background-color: white;
+}
+
+header {
+  height: 100%;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+header img {
+  width: 100px;
+  height: 50px;
+  text-align: center;
+}
+
+/* メインのコンテンツの固定 */
+/* ボディの定義 */
+#main_contents-bk{
+  padding-top: 55px;
+}
+
+#main_contents{
+  width:100%;
+  margin:auto;
+}
+
+/* ここからトップページ */
+.heading {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 40px;
+}
+
+#img_cloud {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+}
+
+.description {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: center;
+}
+
+.btn_wrap {
+  text-align: center;
+}
+
+.square_btn{
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  background: #55acee;/*ボタン色*/
+  color: #FFF;
+  border-bottom: solid 4px #627295;
+  border-radius: 3px;
+}
+.square_btn:hover {/*ボタンを押したとき*/
+  -ms-transform: translateY(4px);
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);/*下に動く*/
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);/*影を小さく*/
+  border-bottom: none;
+}
+
+  /* ここから結果表示 */
+#img_load {
+  height: 150px;
+  width: auto;
+  max-width: 300px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+#share_area {
+  display: none;
+}
+
+form {
+  text-align: center;
+  width: 300px;
+  max-width: 90%;
+  margin: auto;
+}
+
+form input {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+textarea {
+  resize: none;
+  display: inline-block;
+  width: 100%;
+  height: 150px;
+  margin: auto;
+  border-radius: 0.67em;   /* 角丸 */
+  border: 2px solid #55acee;  /* 枠線 */
+  background-color: snow;  /* 背景色 */
+  font-size: 1em;          /* 文字サイズ */
+  line-height: 1.2;        /* 行の高さ */
+
+}
+
+#img_error {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+}
+
+h2 {
+  font-size: 1.3em;
+  font-weight: bold;
+}

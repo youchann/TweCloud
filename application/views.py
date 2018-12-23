@@ -59,7 +59,7 @@ def show_result():
 def create_share_tweet():
     file_name = session.get('file_name')
 
-    image_markup = Markup('<img src="static/images/' + file_name + '">')
+    image_markup = Markup('<img src="static/clouds' + file_name + '">')
     return render_template('create_share.html', image_markup=image_markup)
 
 
@@ -70,7 +70,8 @@ def share_cloud():
 
     oauth_token = session.get('oauth_token')
     oauth_token_secret = session.get('oauth_token_secret')
-    file_path = 'application' + url_for('static', filename='images/' + session.get('file_name'))
+    file_path = 'application' + url_for('static', filename='clouds/' + session.get('file_name'))
+    print(file_path)
 
     is_shared = twitter.tweet_with_image(oauth_token, oauth_token_secret, tweet_text, file_path)
     if is_shared is False:

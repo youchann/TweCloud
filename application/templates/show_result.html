@@ -2,16 +2,31 @@
 {% block body %}
 
 
-<div id="loading">
-    <p>ローディング中です</p>
-    <img src="{{ url_for('static', filename='loading/loading.gif') }}">
+<div class="heading change_head">
+    <h2>ローディング中です</h2>
 </div>
 
-<div class="result_image"></div>
+<div class="img_center cloud">
+    <img id="img_load" src="{{ url_for('static', filename='loading/loading.gif') }}">
+</div>
 
-<p><a href="{{ url_for('create_share_tweet') }}">シェアする</a></p>
+<div id="share_area">
+    <div class="heading">
+        <h2>あなたのクモをシェアしよう！</h2>
+    </div>
+
+    <div class="description description_share">
+        <p>
+            クモの画像と一緒にシェアされます。<br>
+            ツイート内容を入力してください。
+        </p>
+    </div>
+
+    <form action="{{ url_for('share_cloud') }}" method="POST">
+        <textarea name="text" cols="25" rows="4">テスト。</textarea> 
+        <input class="square_btn fab fa-twitter fa-lg" type="submit" value="&#xf099; シェアする"/>
+    </form>
+</div>
 
 <script src="{{ url_for('static', filename='js/ajax_get_result.js') }}"></script>
-
-
 {% endblock %}

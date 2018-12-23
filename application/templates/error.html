@@ -1,7 +1,18 @@
 {% extends "layout.html" %}
 {% block body %}
 
-<p>エラー</p>
-<p><a href="/">トップに戻る</a></p>
+
+<div class="img_center">
+    <img id="img_error" src="{{ url_for('static', filename='images/error.png') }}">
+</div>
+
+<div class="description">
+    <p>現在、不具合が起きています。</p>
+    <p>通信の混雑が原因である可能性が高いため、時間を置いてからお試しください。</p>
+</div>
+
+<div class="img_center">
+    <p><a href="{{ url_for('show_top_page') }}">トップに戻る</a></p>
+</div>
 
 {% endblock %}

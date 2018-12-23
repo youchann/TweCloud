@@ -1,7 +1,6 @@
 $(function() {
-    var OT = getParam("oauth_token");
-    var OV = getParam("oauth_verifier");
-    var oauth_data = JSON.stringify({"oauth_token":OT,"oauth_verifier":OV});
+    var oauth_data = JSON.stringify({"oauth_token":getParam("oauth_token"),
+                                     "oauth_verifier":getParam("oauth_verifier")});
 
     $.ajax({
         type: "POST",
@@ -14,17 +13,21 @@ $(function() {
         function (data) {
             if (data !== null){
                 var file_name = JSON.parse(data.ResultSet).file_name;
-                $("#loading").remove(); //loading画面の削除
-                $(".result_image").append('<p>これがあなたのクモです！</p>');
-                $(".result_image").append('<img src="static/images/' + file_name + '">');
+                $(".change_head").children().remove();
+                $(".cloud").children().remove();
+                $(".change_head").append('<h2>これがあなたのクモです！</h2>');
+                $(".cloud").append('<img id="img_cloud" src="static/clouds/' + file_name + '">');
+                $("#share_area").css("display","block");
             } else {
-                $("#loading").remove(); //loading画面の削除
-                $(".result_image").append('<p>エラー</p>');                
-                $(".result_image").append('<p><a href="/">トップに戻る</a></p>');                
+                $(".change_head").children().remove();
+                $(".cloud").children().remove();
+                $(".change_head").append('<p>エラー</p>');                
+                $(".change_head").append('<p><a href="/">トップに戻る</a></p>');                
             }
         },
         // 2つめは通信失敗時のコールバック
         function () {
+            $("#loading").remove(); //loading画面の削除
             $(".result_image").append('<p>エラー</p>');                
             $(".result_image").append('<p><a href="/">トップに戻る</a></p>');  
     });
