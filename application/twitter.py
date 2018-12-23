@@ -30,7 +30,6 @@ def get_tweets(access_token):
         'exclude_replies': True,
         'include_rts': False
     }
-
     twitter = OAuth1Session(
         consumer_key,
         consumer_secret,
@@ -41,7 +40,6 @@ def get_tweets(access_token):
     while True: # max_idが一番古いIDになるまで繰り返す
         print('%d番目のリクエスト' % loop_count, max_id)
         new_tweet_list = []
-
         params['max_id'] = max_id # paramsの更新
         response = twitter.get(get_tweet_url, params=params)
 
@@ -64,8 +62,8 @@ def get_tweets(access_token):
                 break
 
         else:
-            print("ERROR: %d" % response.status_code)
-            break
+            print("ツイート取得失敗: %d" % response.status_code)
+            return None
 
     # ループ終了後
     print('取得ツイート数', len(tweet_list))
@@ -77,13 +75,15 @@ def get_request_token():
 
     # Twitter Application Management で設定したコールバックURLsのどれか
     oauth_callback = request.args.get('oauth_callback')
-
     twitter = OAuth1Session(consumer_key, consumer_secret)
-
     response = twitter.post(
         request_token_url,
         params={'oauth_callback': oauth_callback}
     )
+
+    if response.status_code != 200:
+        print ("リクエストトークン取得失敗: %s", response.text)
+        return None
 
     request_token = dict(parse_qsl(response.content.decode("utf-8")))
 
@@ -103,11 +103,14 @@ def get_access_token(oauth_token, oauth_verifier):
         oauth_token,
         oauth_verifier,
     )
-
     response = twitter.post(
         access_token_url,
         params={'oauth_verifier': oauth_verifier}
     )
+
+    if response.status_code != 200:
+        print ("アクセストークン取得失敗: %s", response.text)
+        return None
 
     access_token = dict(parse_qsl(response.content.decode("utf-8")))
 
@@ -129,7 +132,7 @@ def tweet_with_image(oauth_token, oauth_token_secret, tweet_text, file_path):
     # レスポンスを確認
     if req_media.status_code != 200:
         print ("画像アップデート失敗: %s", req_media.text)
-        exit()
+        return False
     
     # Media ID を取得
     media_id = json.loads(req_media.text)['media_id']
@@ -142,12 +145,10 @@ def tweet_with_image(oauth_token, oauth_token_secret, tweet_text, file_path):
     # 再びレスポンスを確認
     if req_media.status_code != 200:
         print ("テキストアップデート失敗: %s", tweet_text)
-        exit()
+        return False
 
-    print ("OK")
+    return True
 
-
-    pass
 
 # 文字列を結合
 def conbine_tweets(tweet_list):
