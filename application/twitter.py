@@ -63,7 +63,7 @@ def get_tweets(access_token):
 
         else:
             print("ツイート取得失敗: %d" % response.status_code)
-            break
+            return None
 
     # ループ終了後
     print('取得ツイート数', len(tweet_list))
@@ -110,7 +110,7 @@ def get_access_token(oauth_token, oauth_verifier):
 
     if response.status_code != 200:
         print ("アクセストークン取得失敗: %s", response.text)
-        exit()
+        return None
 
     access_token = dict(parse_qsl(response.content.decode("utf-8")))
 

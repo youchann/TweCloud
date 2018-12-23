@@ -18,7 +18,7 @@ def show_top_page():
     to_auth_page_url = twitter.get_request_token()
 
     if to_auth_page_url is None:
-        return render_template('error.html')
+        return redirect(url_for('show_error'))
 
     return render_template('login.html', url=to_auth_page_url)
 
@@ -75,6 +75,10 @@ def share_cloud():
 
     is_shared = twitter.tweet_with_image(oauth_token, oauth_token_secret, tweet_text, file_path)
     if is_shared is False:
-        return render_template('error.html') 
+        return redirect(url_for('show_error')) 
 
     return render_template('end_share.html')
+
+@app.route('/error')
+def show_error():
+    return render_template('error.html')
