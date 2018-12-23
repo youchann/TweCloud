@@ -23,10 +23,12 @@
     </div>
 
     <form action="{{ url_for('share_cloud') }}" method="POST">
-        <textarea name="text" cols="25" rows="4">テスト。</textarea> 
+        <p id="counter"></p>
+        <textarea name="text" cols="25" rows="4" placeholder="ツイート内容を入力してください"></textarea> 
         <input class="square_btn fab fa-twitter fa-lg" type="submit" value="&#xf099; シェアする"/>
     </form>
 </div>
 
 <script src="{{ url_for('static', filename='js/ajax_get_result.js') }}"></script>
+<script src="{{ url_for('static', filename='js/count_char.js') }}"></script>
 {% endblock %}
