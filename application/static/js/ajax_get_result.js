@@ -11,7 +11,7 @@ $(function() {
     .then(
         // 1つめは通信成功時のコールバック
         function (data) {
-            if (data !== null){
+            if (data !== 'error'){
                 var file_name = JSON.parse(data.ResultSet).file_name;
                 $(".change_head").children().remove();
                 $(".cloud").children().remove();

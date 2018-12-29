@@ -15,10 +15,10 @@
   <meta property="og:description" content="自分のツイートでワードクラウドを作成できるサービスです。自分だけクモを作ろう！">
   <meta property="og:type" content="website">
   <meta property="og:url" content="サイトのURL貼る">
-  <meta property="og:image" content="ogpのURL貼る">
+  <meta property="og:image" content="{{ url_for('static', filename='images/cloud.png') }}">
   <meta property="fb:app_id" content="twecloud" />
   <meta name="twitter:card" content="自分のツイートでワードクラウドを作成できるサービスです。自分だけクモを作ろう！">
-  {% comment %} <meta name="twitter:site" content="サイトのURL貼る"> {% endcomment %}
+  <meta name="twitter:site" content="サイトのURL貼る">
   <meta name="twitter:image" content="{{ url_for('static', filename='images/cloud.png') }}">
 
   <link rel="shortcut icon" href="{{ url_for('static', filename='images/logo.png') }}">

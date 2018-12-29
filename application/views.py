@@ -30,12 +30,12 @@ def analyze_tweet():
     oauth_verifier = request.json['oauth_verifier']
 
     access_token = twitter.get_access_token(oauth_token, oauth_verifier)
-    if access_token is None:
-        return None
+    if access_token is False:
+        return 'error'
 
     tweet_list = twitter.get_tweets(access_token)
-    if tweet_list is None:
-        return None
+    if tweet_list is False:
+        return 'error'
 
     conbined_char = twitter.conbine_tweets(tweet_list)
     arranged_char = janome.exclude_br_and_space(conbined_char)
