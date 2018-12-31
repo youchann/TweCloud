@@ -4,8 +4,8 @@ from flask import request
 from requests_oauthlib import OAuth1Session
 import application.config as config
 
-consumer_key = config.CONSUMER_KEY
-consumer_secret = config.CONSUMER_SECRET
+consumer_key = config.TWITTER_CONSUMER_KEY
+consumer_secret = config.TWITTER_CONSUMER_SECRET
 # AT = config.ACCESS_TOKEN
 # ATS = config.ACCESS_TOKEN_SECRET
 
