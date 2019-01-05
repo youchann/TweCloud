@@ -9,8 +9,6 @@ def exclude_url(char):
             url = char[location_URL:location_URL+23]
             char = char.replace(url, '')
             count += 1
-            print(url)
-            print('%d番目のurl削除' % count)
         else:
             break
 
@@ -20,8 +18,6 @@ def exclude_url(char):
             url = char[location_URL:location_URL+22]
             char = char.replace(url, '')
             count += 1
-            print(url)
-            print('%d番目のurl削除' % count)
         else:
             break
 

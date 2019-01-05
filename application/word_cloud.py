@@ -5,7 +5,7 @@ from os import path
 def create_wordcloud(text):
 
     # 環境に合わせてフォントのパスを指定する。
-    fpath = "/usr/share/fonts/dejavu/DejaVuSans.ttf"
+    fpath = "/usr/share/fonts/Rounded-Mplus/rounded-mplus-1c-regular.ttf"
 
     # ストップワードの設定
     stop_words = [ u'てる', u'いる', u'なる', u'れる', u'する', u'ある', u'こと', u'これ', u'さん', u'して', \

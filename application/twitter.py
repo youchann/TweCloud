@@ -41,7 +41,6 @@ def get_tweets(access_token):
     )
 
     while True: # max_idが一番古いIDになるまで繰り返す
-        print('%d番目のリクエスト' % loop_count, max_id)
         new_tweet_list = []
         params['max_id'] = max_id # paramsの更新
         response = twitter.get(get_tweet_url, params=params)
@@ -65,11 +64,9 @@ def get_tweets(access_token):
                 break
 
         else:
-            print("ツイート取得失敗: %d" % response.status_code)
             return False
 
     # ループ終了後
-    print('取得ツイート数', len(tweet_list))
     return tweet_list
 
 
@@ -83,9 +80,7 @@ def get_request_token():
         request_token_url,
         params={'oauth_callback': oauth_callback}
     )
-    print('skjdf')
     if response.status_code != 200:
-        print ("リクエストトークン取得失敗: %s", response.text)
         return None
 
     request_token = dict(parse_qsl(response.content.decode("utf-8")))

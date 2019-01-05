@@ -39,7 +39,6 @@ def analyze_tweet():
     arranged_char = janome.exclude_br_and_space(conbined_char)
     analyzed_data = janome.janome_analysis(arranged_char)
 
-    print(analyzed_data)
     file_name = create_wordcloud(' '.join(analyzed_data)) + '.png'
     session['file_name'] = file_name
     session['oauth_token'] = access_token['oauth_token']
