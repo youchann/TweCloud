@@ -3,3 +3,4 @@ word_cloud/
 .python-version
 application/config.py
 __pycache__/
+.env

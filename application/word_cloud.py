@@ -1,10 +1,11 @@
 import uuid
 from wordcloud import WordCloud
+from os import path
 
 def create_wordcloud(text):
 
     # 環境に合わせてフォントのパスを指定する。
-    fpath = "/Library/Fonts//ヒラギノ丸ゴ ProN W4.ttc"
+    fpath = "/usr/share/fonts/dejavu/DejaVuSans.ttf"
 
     # ストップワードの設定
     stop_words = [ u'てる', u'いる', u'なる', u'れる', u'する', u'ある', u'こと', u'これ', u'さん', u'して', \
@@ -12,13 +13,10 @@ def create_wordcloud(text):
              u'それ', u'ここ', u'ちゃん', u'くん', u'', u'て',u'に',u'を',u'は',u'の', u'が', u'と', u'た', u'し', u'で', \
              u'ない', u'も', u'な', u'い', u'か', u'ので', u'よう', u'']
 
-    wordcloud = WordCloud(background_color="white",font_path=fpath, width=1080, height=607, \
-                          stopwords=set(stop_words)).generate(text)
+    wordcloud = WordCloud(background_color="white",font_path=fpath, width=1080, height=607, stopwords=set(stop_words)).generate(text)
 
-    file_name = create_file_name() # ランダムなファイル名を生成
-    wordcloud.to_file('application/static/clouds/' + file_name + '.png')
-    
+
+    file_name = str(uuid.uuid1()) # ランダムなファイル名を生成
+    wordcloud.to_file(path.join(path.dirname(__file__) + '/static/clouds/', file_name + '.png'))
+
     return file_name
-
-def create_file_name():
-    return str(uuid.uuid1())

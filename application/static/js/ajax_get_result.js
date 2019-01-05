@@ -16,7 +16,7 @@ $(function() {
                 $(".change_head").children().remove();
                 $(".cloud").children().remove();
                 $(".change_head").append('<h2>これがあなたのクモです！</h2>');
-                $(".cloud").append('<img id="img_cloud" src="static/clouds/' + file_name + '">');
+                $(".cloud").append('<img id="img_cloud" src="/static/clouds/' + file_name + '">');
                 $("#share_area").css("display","block");
             } else {
                 $(".change_head").children().remove();

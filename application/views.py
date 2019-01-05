@@ -14,7 +14,6 @@ def show_top_page():
     session.pop('file_name', None)
     session.pop('oauth_token', None)
     session.pop('oauth_token_secret', None)
-
     to_auth_page_url = twitter.get_request_token()
 
     if to_auth_page_url is None:

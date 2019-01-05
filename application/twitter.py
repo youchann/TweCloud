@@ -1,11 +1,14 @@
-import json
+import json, os
 from urllib.parse import parse_qsl
 from flask import request
 from requests_oauthlib import OAuth1Session
-import application.config as config
+from os.path import join, dirname
+from dotenv import load_dotenv, find_dotenv
 
-consumer_key = config.TWITTER_CONSUMER_KEY
-consumer_secret = config.TWITTER_CONSUMER_SECRET
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(find_dotenv())
+consumer_key = os.environ.get('TWITTER_CONSUMER_KEY')
+consumer_secret = os.environ.get('TWITTER_CONSUMER_SECRET')
 # AT = config.ACCESS_TOKEN
 # ATS = config.ACCESS_TOKEN_SECRET
 
@@ -80,7 +83,7 @@ def get_request_token():
         request_token_url,
         params={'oauth_callback': oauth_callback}
     )
-
+    print('skjdf')
     if response.status_code != 200:
         print ("リクエストトークン取得失敗: %s", response.text)
         return None
