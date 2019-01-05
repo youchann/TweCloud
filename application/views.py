@@ -5,8 +5,7 @@ import application.twitter as twitter
 import application.janome as janome
 from application.word_cloud import create_wordcloud
 from application import app
-
-app.config['SECRET_KEY'] = os.urandom(24)
+    
 
 @app.route('/')
 def show_top_page():
@@ -41,11 +40,12 @@ def analyze_tweet():
     analyzed_data = janome.janome_analysis(arranged_char)
 
     print(analyzed_data)
-    session['file_name'] = create_wordcloud(' '.join(analyzed_data)) + '.png'
+    file_name = create_wordcloud(' '.join(analyzed_data)) + '.png'
+    session['file_name'] = file_name
     session['oauth_token'] = access_token['oauth_token']
     session['oauth_token_secret'] = access_token['oauth_token_secret']
 
-    return_data = {'file_name':session.get('file_name')}
+    return_data = {'file_name':file_name}
     return jsonify(ResultSet=json.dumps(return_data))
 
 
@@ -69,8 +69,7 @@ def share_cloud():
 
     oauth_token = session.get('oauth_token')
     oauth_token_secret = session.get('oauth_token_secret')
-    file_path = 'application' + url_for('static', filename='clouds/' + session.get('file_name'))
-    print(file_path)
+    file_path = os.path.join(os.path.dirname(__file__)) + url_for('static', filename='clouds/' + session.get('file_name'))
 
     is_shared = twitter.tweet_with_image(oauth_token, oauth_token_secret, tweet_text, file_path)
     if is_shared is False:
