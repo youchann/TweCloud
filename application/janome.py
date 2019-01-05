@@ -27,7 +27,6 @@ def exclude_url(char):
 def exclude_br_and_space(char):
     char = char.replace('\n','')
     char = char.replace(' ', '')
-    print('改行の削除完了')
     return exclude_url(char)
 
 

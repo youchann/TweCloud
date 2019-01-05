@@ -7,6 +7,10 @@ html, body{
   height:100%;
 }
 
+.top_contents {
+  margin-bottom: 20px;
+}
+
 .img_center {
   text-align: center;
 }
