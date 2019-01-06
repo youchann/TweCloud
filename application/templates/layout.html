@@ -12,11 +12,11 @@
   <meta property="og:title" content="TWECLOUD">
   <meta property="og:description" content="自分のツイートでワードクラウドを作成できるサービスです。自分だけクモを作ろう！">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="サイトのURL貼る">
+  <meta property="og:url" content="http://twecloud.tk">
   <meta property="og:image" content="{{ url_for('static', filename='images/cloud.png') }}">
   <meta property="fb:app_id" content="twecloud" />
   <meta name="twitter:card" content="自分のツイートでワードクラウドを作成できるサービスです。自分だけクモを作ろう！">
-  <meta name="twitter:site" content="サイトのURL貼る">
+  <meta name="twitter:site" content="http://twecloud.tk">
   <meta name="twitter:image" content="{{ url_for('static', filename='images/cloud.png') }}">
 
   <link rel="shortcut icon" href="{{ url_for('static', filename='images/logo.png') }}">
@@ -25,6 +25,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <!-- Font Awasome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-123332199-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-123332199-2');
+  </script>
 
 </head>
 <body>
