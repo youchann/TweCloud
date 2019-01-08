@@ -136,7 +136,11 @@ def tweet_with_image(oauth_token, oauth_token_secret, tweet_text, file_path):
     media_id = json.loads(req_media.text)['media_id']
     print ("Media ID: %d" % media_id)
 
-    tweet_text += '\nTWECLOUD 〜自分のツイートを可視化してみよう！〜\nhttp://twecloud.tk\n#twecloud'
+    tweet_text +='''
+
+TWECLOUD 〜自分のツイートを可視化してみよう！〜
+http://twecloud.tk
+#twecloud'''
 
     # Media ID を付加してテキストを投稿
     params = {'status': tweet_text, "media_ids": [media_id]}
