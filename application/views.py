@@ -5,8 +5,9 @@ import application.twitter as twitter
 import application.janome as janome
 from application.word_cloud import create_wordcloud
 from application import app
+import application.config as config
 
-app.config['SECRET_KEY'] = os.urandom(24)
+app.config['SECRET_KEY'] = config.FLASK_SECRET_KEY
 
 @app.route('/')
 def show_top_page():
