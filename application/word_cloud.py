@@ -16,7 +16,7 @@ def create_wordcloud(text):
                           stopwords=set(stop_words)).generate(text)
 
     file_name = create_file_name() # ランダムなファイル名を生成
-    wordcloud.to_file('/app/application/static/clouds/', file_name + '.png')
+    wordcloud.to_file('/app/application/static/clouds/' + file_name + '.png')
 
     return file_name
 
