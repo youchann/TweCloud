@@ -3,23 +3,25 @@
 <head>
   <meta charset="uft-8">
   <title>TWECLOUD</title>
-  <meta name="description" content="自分のツイートでワードクラウドを作成できるサービスです。自分だけクモを作ろう！">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta name="description" content="自分のツイートでワードクラウドを作成できるサービスです。自分だけのクモを作ろう！">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
 
-  <meta property="og:site_name" content="TWECLOUD">
-  <meta property="og:title" content="TWECLOUD">
-  <meta property="og:description" content="自分のツイートでワードクラウドを作成できるサービスです。自分だけクモを作ろう！">
+  <!--facebook & その他SNSの設定-->
+  <meta property="og:title" content="TWECLOUD 〜自分の個性を可視化しよう！〜 ">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="サイトのURL貼る">
+  <meta property="og:description" content="自分のツイートでワードクラウドを作成できるサービスです。自分だけのクモを作ろう！">
+  <meta property="og:url" content="https://twecloud.herokuapp.com/">
   <meta property="og:image" content="{{ url_for('static', filename='images/cloud.png') }}">
-  <meta property="fb:app_id" content="twecloud" />
-  <meta name="twitter:card" content="自分のツイートでワードクラウドを作成できるサービスです。自分だけクモを作ろう！">
-  <meta name="twitter:site" content="サイトのURL貼る">
-  <meta name="twitter:image" content="{{ url_for('static', filename='images/cloud.png') }}">
+  <meta property="og:site_name" content="TWECLOUD">
+
+  <!--twitterの設定-->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="https://twecloud.herokuapp.com/">
+  <meta name="twitter:image" content="https://twecloud.herokuapp.com/{{ url_for('static', filename='images/cloud.png') }}">
+  <meta name="twitter:title" content="TWECLOUD 〜自分の個性を可視化しよう！〜 ">
+  <meta name="twitter:description" content="自分のツイートでワードクラウドを作成できるサービスです。自分だけクモを作ろう！">
 
   <link rel="shortcut icon" href="{{ url_for('static', filename='images/logo.png') }}">
 
