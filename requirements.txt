@@ -21,4 +21,4 @@ requests-oauthlib==1.0.0
 six==1.11.0
 urllib3==1.24.1
 Werkzeug==0.14.1
-wordcloud==1.5.0.post10+gb79b3d6
+wordcloud==1.5.0
